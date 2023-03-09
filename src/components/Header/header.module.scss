@@ -1,0 +1,13 @@
+.header {
+  @apply relative flex justify-between items-center;
+  &__title {
+    @apply font-bold text-black;
+    font-size: 1.5vw;
+  }
+  &__bar {
+    @apply relative flex gap-5 items-center;
+  }
+  .search {
+    min-width: 22.042vw;
+  }
+}

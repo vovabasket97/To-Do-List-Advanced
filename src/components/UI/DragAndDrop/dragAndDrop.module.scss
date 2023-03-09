@@ -1,0 +1,21 @@
+.dropList {
+  outline: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  box-shadow: rgb(0 0 0 / 5%) 0px 1px 3px, rgb(0 0 0 / 5%) 0px 10px 15px -5px, rgb(0 0 0 / 4%) 0px 7px 7px -5px;
+  border: 1px solid rgb(222, 226, 230);
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  min-width: 401px;
+  width: min-content;
+  h2 {
+    @apply text-2xl text-black mb-5 text-center;
+  }
+}
+.columns > div {
+  @apply flex flex-nowrap gap-4;
+}
