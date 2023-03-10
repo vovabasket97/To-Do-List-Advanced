@@ -1,12 +1,14 @@
 import { useState, useCallback, useMemo, memo, useEffect } from 'react';
 
-import { Drawer, Text, Grid, SimpleGrid, Select } from '@mantine/core';
+import { Drawer, Text, Grid, SimpleGrid, Select, MultiSelect } from '@mantine/core';
 import SidebarEditorItem from './SidebarEditorItem';
 
 import { useActions } from 'hooks/useActions';
-import { data } from 'configs/todo/getInitialData';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import { IToDo } from 'shared/types/todo.types';
+
+import { data } from 'configs/todo/getInitialData';
+import { ITag, IToDo } from 'shared/types/todo.types';
+import { IColumn } from 'shared/types/column.types';
 
 const SidebarEditer = ({ opened }: { opened: boolean }) => {
   const actions = useActions();
@@ -15,7 +17,7 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
   const newData = useMemo(() => data.map(el => ({ value: el.value, label: el.title })), []);
 
   const item = useMemo((): IToDo | undefined => {
-    return Object.values(columns)
+    return Object.values(columns as IColumn)
       .map(el => el.items)
       .flat()
       .find(el => el.value === itemId);
@@ -37,7 +39,7 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
   const onChangeName = useCallback(
     (value: string) => {
       setName(value);
-      changeItemHandler({ ...item, oldStatus: item?.status, name: value });
+      changeItemHandler({ ...item, oldStatus: item?.status, name: value, tags: item?.tags });
     },
     [changeItemHandler, item]
   );
@@ -45,7 +47,7 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
   const onChangeDescription = useCallback(
     (value: string) => {
       setDescription(value);
-      changeItemHandler({ ...item, oldStatus: item?.status, description: value });
+      changeItemHandler({ ...item, oldStatus: item?.status, description: value, tags: item?.tags });
     },
     [changeItemHandler, item]
   );
@@ -58,7 +60,24 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
         status: type,
         oldStatus: item?.status,
         name,
-        description
+        description,
+        tags: item?.tags
+      });
+    },
+    [changeItemHandler, description, item, name]
+  );
+
+  const onChangeTags = useCallback(
+    (tag: ITag[], action?: string) => {
+      const tags = item?.tags || [];
+      const data = action && action === 'change' ? tag : [...tags, ...tag];
+      changeItemHandler({
+        ...item,
+        status: item?.status,
+        oldStatus: item?.status,
+        name,
+        description,
+        tags: data
       });
     },
     [changeItemHandler, description, item, name]
@@ -72,9 +91,16 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
       opened={opened}
       onClose={onCloseHandler}
       title={
-        <SidebarEditorItem value={name} onChange={onChangeName}>
-          <h2 className='text-xl font-bold'>{name}</h2>
-        </SidebarEditorItem>
+        <SimpleGrid spacing={10} cols={1}>
+          <Text size='lg' weight={500}>
+            Title
+          </Text>
+          <SidebarEditorItem value={name} onChange={onChangeName}>
+            <Text size='sm' weight={400}>
+              {name}
+            </Text>
+          </SidebarEditorItem>
+        </SimpleGrid>
       }
       padding='xl'
       size='xl'
@@ -103,7 +129,7 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
             <Select
               allowDeselect
               className='mt-2'
-              size='md'
+              size='sm'
               data={newData}
               onChange={onChangeType}
               value={type}
@@ -111,6 +137,30 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
               transitionDuration={80}
               transitionTimingFunction='ease'
               required
+            />
+          </SimpleGrid>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <SimpleGrid spacing={10} cols={1}>
+            <Text size='lg' weight={500}>
+              Tags
+            </Text>
+            <MultiSelect
+              data={item?.tags?.map(el => ({ value: el.value, label: el.value })) || []}
+              placeholder='Select tags'
+              value={item?.tags?.map(el => el.value) || []}
+              creatable
+              searchable
+              getCreateLabel={query => `+ Create ${query}`}
+              onChange={(items: string[]) => {
+                const data = items.map(el => ({ value: el }));
+                onChangeTags(data, 'change');
+              }}
+              onCreate={query => {
+                const item = { value: query };
+                onChangeTags([item]);
+                return item;
+              }}
             />
           </SimpleGrid>
         </Grid.Col>

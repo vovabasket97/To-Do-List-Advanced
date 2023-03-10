@@ -23,11 +23,11 @@ const TodoSlice = createSlice({
       return (state = action.payload);
     },
     addNewTodoState: (state, action) => {
-      const { title, description, type } = action.payload;
+      const { title, description, type, tags } = action.payload;
       const columnByType = Object.values(state.columns).find(el => el.value === type) as IColumn;
       state.columns[columnByType.id].items = [
         ...state.columns[columnByType.id].items,
-        generateToDoItem({ name: title, description, status: type })
+        generateToDoItem({ name: title, description, status: type, tags: [...tags] || [] })
       ];
     },
     removeToDoItem: (state, action) => {

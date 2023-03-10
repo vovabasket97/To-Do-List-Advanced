@@ -92,13 +92,15 @@ const DashboardDragAndDropItem: FC<IDashboardDragAndDropItem> = ({ item, column,
           </Menu>
         </div>
         <p className='text-sm font-normal text-gray-700 dark:text-gray-400 w-full'>{item.description}</p>
-        <div className='pt-4 w-full'>
-          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2'>
-            #photography
-          </span>
-          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2'>#travel</span>
-          <span className='inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2'>#winter</span>
-        </div>
+        {item.tags.length !== 0 && (
+          <div className='pt-4 w-full'>
+            {item.tags.map((tag, i) => (
+              <span key={i} className='inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2'>
+                #{tag.value}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,11 @@
-import { useState } from 'react';
-
+import { useState, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
 import { Navbar, Center, Stack, ActionIcon, useMantineTheme } from '@mantine/core';
 import { IconGauge, IconLogout, IconUser, IconPlaylistAdd } from '@tabler/icons';
 import { routes } from 'pages/routes';
 
 import SidebarItem from './SidebarItem';
-import { useCallback } from 'react';
 
 const mockdata = [
   { id: 1, url: routes.dashboard, label: 'Dashboard', icon: IconGauge },
@@ -31,7 +30,7 @@ const Sidebar = () => {
   return (
     <Navbar
       height='100vh'
-      style={{ position: 'sticky', top: '0' }}
+      style={{ position: 'sticky', top: '0', zIndex: 2 }}
       width={{ base: 80 }}
       p='md'
       sx={theme => ({

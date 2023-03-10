@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import { TextInput, Select, Button, Paper, Text, Textarea, Group, SimpleGrid, createStyles } from '@mantine/core';
+import { TextInput, Select, Button, Paper, Text, Textarea, Group, SimpleGrid, createStyles, MultiSelect } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useActions } from 'hooks/useActions';
 import { IconCheck } from '@tabler/icons';
@@ -8,6 +8,7 @@ import { IconCheck } from '@tabler/icons';
 import { data } from 'configs/todo/getInitialData';
 
 import styles from './addTask.module.scss';
+import { ITag } from 'shared/types/todo.types';
 
 const useStyles = createStyles(theme => {
   const BREAKPOINT = theme.fn.smallerThan('sm');
@@ -68,13 +69,14 @@ const AddTask = () => {
   const [title, setTitle] = useState('');
   const [type, setType] = useState('');
   const [desc, setDesc] = useState('');
+  const [tags, setTags] = useState<ITag[]>([]);
 
   const onChangeTitleHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value), []);
   const onChangeAreaHandler = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => setDesc(e.target.value), []);
   const onChangeTypeHandler = useCallback((value: string) => setType(value), []);
 
   const onClickSubmitHandler = useCallback(() => {
-    actions.addNewTodoState({ title, description: desc, type });
+    actions.addNewTodoState({ title, description: desc, type, tags });
     showNotification({
       title: 'Great job',
       message: 'Your task was added successfully! 🤥',
@@ -85,7 +87,8 @@ const AddTask = () => {
     setTitle('');
     setType('');
     setDesc('');
-  }, [actions, desc, title, type]);
+    setTags([]);
+  }, [actions, desc, title, type, tags]);
 
   return (
     <div className={styles.addTask}>
@@ -111,7 +114,7 @@ const AddTask = () => {
                   label='Select type your task'
                   placeholder='Pick one'
                   size='md'
-                  data={data}
+                  data={data.map(el => ({ value: el.value, label: el.title }))}
                   onChange={onChangeTypeHandler}
                   value={type}
                   withAsterisk
@@ -121,6 +124,26 @@ const AddTask = () => {
                   required
                 />
               </SimpleGrid>
+
+              <MultiSelect
+                label='Tags'
+                size='md'
+                data={tags.map(el => ({ value: el.value, label: el.value }))}
+                placeholder='Select tags'
+                value={tags.map(el => el.value)}
+                creatable
+                searchable
+                getCreateLabel={query => `+ Create ${query}`}
+                onChange={(items: string[]) => {
+                  const data = items.map(el => ({ value: el }));
+                  setTags(data);
+                }}
+                onCreate={query => {
+                  const item = { value: query };
+                  setTags(prev => [...prev, item]);
+                  return item;
+                }}
+              />
 
               <Textarea
                 size='md'

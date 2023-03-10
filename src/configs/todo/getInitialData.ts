@@ -15,23 +15,27 @@ export const columns = {
       generateToDoItem({
         name: 'Create css responsive',
         description: 'Create css responsive for all pages',
-        status: 'backlog'
+        status: 'backlog',
+        tags: []
       }),
       generateToDoItem({
         name: 'Create dark/white theme',
         description: 'Create dark/white theme css with tailwind and mantine.',
-        status: 'backlog'
+        status: 'backlog',
+        tags: []
       }),
       generateToDoItem({
         name: 'Create back-end on nestjs',
         description:
           'Create back-end on nestjs with mongodb for store data about tasks, users and make authentication for log in and sign in users.',
-        status: 'backlog'
+        status: 'backlog',
+        tags: []
       }),
       generateToDoItem({
         name: 'Create account page',
         description: 'Create account page with some tabs. For example "general, authentication".',
-        status: 'backlog'
+        status: 'backlog',
+        tags: []
       })
     ]
   },
@@ -47,27 +51,32 @@ export const columns = {
       generateToDoItem({
         name: 'Make notification system',
         description: 'Create notification system for comfortable managed notifications',
-        status: 'done'
+        status: 'done',
+        tags: []
       }),
       generateToDoItem({
         name: 'Make add task functionality and layout',
         description: 'Make functionality for add task to state.',
-        status: 'done'
+        status: 'done',
+        tags: []
       }),
       generateToDoItem({
         name: 'Make cards dynamic height',
         description: 'Make normal dnd boards with different height cards.',
-        status: 'done'
+        status: 'done',
+        tags: []
       }),
       generateToDoItem({
         name: 'Create Drag and Drop board',
         description: 'Create dnd board with available to dnd and to creating new.',
-        status: 'done'
+        status: 'done',
+        tags: []
       }),
       generateToDoItem({
         name: 'Make routing',
         description: 'Make good routing system architecture for routing in app.',
-        status: 'done'
+        status: 'done',
+        tags: []
       })
     ]
   }

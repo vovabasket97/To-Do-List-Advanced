@@ -8,6 +8,7 @@ import { useTypedSelector } from 'hooks/useTypedSelector';
 
 import { IToDo } from 'shared/types/todo.types';
 import styles from './header.module.scss';
+import { IColumn } from 'shared/types/column.types';
 
 const Header = () => {
   const actions = useActions();
@@ -18,7 +19,7 @@ const Header = () => {
       const data = async () => {
         // const res = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments').then(res => res.json());
         // return res.map(el => value + el.email);
-        return Object.values(tasks.columns)
+        return Object.values(tasks.columns as IColumn)
           .map(el => el.items)
           .flat()
           .filter(el => el.name.toLowerCase().includes(value.toLowerCase()));

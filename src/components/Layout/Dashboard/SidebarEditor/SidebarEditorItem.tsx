@@ -1,8 +1,11 @@
 import { useState, useCallback, FC, ReactNode } from 'react';
 
-import { Grid, Input, Button, Group, Tooltip, Textarea, FocusTrap } from '@mantine/core';
+import { Grid, Input, Button, Group, Tooltip, Textarea, FocusTrap, ActionIcon } from '@mantine/core';
 
 import { useToggle } from '@mantine/hooks';
+
+import { IconEditCircle } from '@tabler/icons';
+import styles from './SidebarEditorItem.module.scss';
 
 interface ISidebarEditorItem {
   value: string;
@@ -26,7 +29,7 @@ const SidebarEditorItem: FC<ISidebarEditorItem> = ({ value, onChange, inputType,
   }, [inputValue, onChange, toggle]);
 
   return (
-    <Tooltip withArrow label='Click for edit' offset={10} transition='fade' transitionDuration={200}>
+    <Tooltip withArrow label='Click on icon for edit' offset={10} transition='fade' transitionDuration={200}>
       {toggleValue === 'editor' ? (
         <Grid>
           <Grid.Col span={12}>
@@ -48,7 +51,10 @@ const SidebarEditorItem: FC<ISidebarEditorItem> = ({ value, onChange, inputType,
           </Grid.Col>
         </Grid>
       ) : (
-        <div className='w-fit' onClick={() => toggle()}>
+        <div className={styles.SidebarEditorItem}>
+          <ActionIcon className={styles.SidebarEditorItem_icon} variant='outline' onClick={() => toggle()}>
+            <IconEditCircle size='12px' radius='sm' />
+          </ActionIcon>
           {children}
         </div>
       )}
