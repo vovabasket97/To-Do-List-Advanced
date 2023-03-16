@@ -1,4 +1,4 @@
-import { TodoSliceActions } from 'store/reducers/todo';
+import { ProjectsSliceActions } from 'store/reducers/projects';
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,5 +6,5 @@ import { bindActionCreators } from 'redux';
 export const useActions = () => {
   const dispatch = useDispatch();
 
-  return useMemo(() => bindActionCreators(TodoSliceActions, dispatch), [dispatch]);
+  return useMemo(() => bindActionCreators(ProjectsSliceActions, dispatch), [dispatch]);
 };

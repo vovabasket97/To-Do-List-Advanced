@@ -1,5 +1,6 @@
-import { IInitial } from 'shared/types/column.types';
-import { generateToDoItem } from 'utils/generateToDoItem';
+import { IInitial, TProjectData } from 'shared/types/projects/column.types';
+import { generateItem } from 'utils/generateItem';
+import { v4 as uuid } from 'uuid';
 
 export const data = [
   { value: 'backlog', title: 'Backlog' },
@@ -12,26 +13,26 @@ export const columns = {
     id: 'column-0',
     ...data[0],
     items: [
-      generateToDoItem({
+      generateItem({
         name: 'Create css responsive',
         description: 'Create css responsive for all pages',
         status: 'backlog',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Create dark/white theme',
         description: 'Create dark/white theme css with tailwind and mantine.',
         status: 'backlog',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Create back-end on nestjs',
         description:
           'Create back-end on nestjs with mongodb for store data about tasks, users and make authentication for log in and sign in users.',
         status: 'backlog',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Create account page',
         description: 'Create account page with some tabs. For example "general, authentication".',
         status: 'backlog',
@@ -48,31 +49,31 @@ export const columns = {
     id: 'column-2',
     ...data[2],
     items: [
-      generateToDoItem({
+      generateItem({
         name: 'Make notification system',
         description: 'Create notification system for comfortable managed notifications',
         status: 'done',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Make add task functionality and layout',
         description: 'Make functionality for add task to state.',
         status: 'done',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Make cards dynamic height',
         description: 'Make normal dnd boards with different height cards.',
         status: 'done',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Create Drag and Drop board',
         description: 'Create dnd board with available to dnd and to creating new.',
         status: 'done',
         tags: []
       }),
-      generateToDoItem({
+      generateItem({
         name: 'Make routing',
         description: 'Make good routing system architecture for routing in app.',
         status: 'done',
@@ -82,7 +83,43 @@ export const columns = {
   }
 };
 
+export const draftProject = ({ name }: { name: string }): TProjectData => ({
+  id: uuid(),
+  name: name,
+  columns: {
+    'column-0': {
+      id: 'column-0',
+      ...data[0],
+      items: [
+        generateItem({
+          name: 'Test task',
+          description: 'Testing new tasks',
+          status: 'backlog',
+          tags: []
+        })
+      ]
+    }
+  },
+  columnOrder: ['column-0']
+});
+
 export const initial: IInitial = {
-  columns,
-  columnOrder: ['column-0', 'column-1', 'column-2']
+  data: [
+    {
+      id: uuid(),
+      name: 'EM',
+      columns,
+      columnOrder: ['column-0', 'column-1', 'column-2']
+    },
+    {
+      id: uuid(),
+      name: 'КТМ',
+      columns: {
+        'column-0': columns['column-0'],
+        'column-1': columns['column-1']
+      },
+      columnOrder: ['column-0', 'column-1']
+    }
+  ],
+  current: 0
 };

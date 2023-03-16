@@ -1,11 +1,11 @@
-import { IColumn } from 'shared/types/column.types';
-import { IToDo } from 'shared/types/todo.types';
+import { IColumn } from 'shared/types/projects/column.types';
+import { IProject } from 'shared/types/projects/projects.types';
 import { FC } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
 
 interface IDragAndDropItem {
   provided: DraggableProvided;
-  item: IToDo;
+  item: IProject;
   column: IColumn;
   isDragging: boolean;
   component: any;

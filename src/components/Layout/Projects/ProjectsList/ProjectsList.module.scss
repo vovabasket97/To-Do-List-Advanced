@@ -1,0 +1,14 @@
+.projectsList {
+  @apply flex flex-col gap-4 py-10 px-4 border-r border-gray-light h-full;
+}
+
+.item {
+  @apply w-fit h-fit flex aspect-square justify-center items-center border rounded-full border-transparent transition-all p-1 duration-300;
+  span {
+    @apply rounded-full h-10 w-10 flex items-center justify-center bg-blue text-white text-xs cursor-pointer;
+  }
+}
+
+.active {
+  @apply border-gray-dark;
+}

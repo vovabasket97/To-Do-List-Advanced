@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import TodoReducer from './todo';
+import ProjectsReducer from './projects';
 
 export const rootReducer = combineReducers({
-  todo: TodoReducer
+  projects: ProjectsReducer
 });

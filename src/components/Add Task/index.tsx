@@ -5,10 +5,10 @@ import { showNotification } from '@mantine/notifications';
 import { useActions } from 'hooks/useActions';
 import { IconCheck } from '@tabler/icons';
 
-import { data } from 'configs/todo/getInitialData';
+import { data } from 'configs/projects/getInitialProjects';
 
 import styles from './addTask.module.scss';
-import { ITag } from 'shared/types/todo.types';
+import { ITag } from 'shared/types/projects/projects.types';
 
 const useStyles = createStyles(theme => {
   const BREAKPOINT = theme.fn.smallerThan('sm');
@@ -76,7 +76,7 @@ const AddTask = () => {
   const onChangeTypeHandler = useCallback((value: string) => setType(value), []);
 
   const onClickSubmitHandler = useCallback(() => {
-    actions.addNewTodoState({ title, description: desc, type, tags });
+    actions.addNewProjectsState({ title, description: desc, type, tags });
     showNotification({
       title: 'Great job',
       message: 'Your task was added successfully! 🤥',

@@ -2,7 +2,7 @@ import { FC, memo, FunctionComponent } from 'react';
 import { Draggable, DraggableProvided } from 'react-beautiful-dnd';
 import DragAndDropItemList from './DragAndDropItemList';
 import styles from './dragAndDrop.module.scss';
-import { IColumn } from 'shared/types/column.types';
+import { IColumn } from 'shared/types/projects/column.types';
 
 interface IDragAndDropColumn {
   column: IColumn;

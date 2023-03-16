@@ -1,12 +1,12 @@
-import { IColumn } from 'shared/types/column.types';
-import { IToDo } from 'shared/types/todo.types';
+import { IColumn } from 'shared/types/projects/column.types';
+import { IProject } from 'shared/types/projects/projects.types';
 import { FC, memo } from 'react';
 import { Draggable, DraggableProvided } from 'react-beautiful-dnd';
 import { areEqual } from 'react-window';
 import DragAndDropItem from './DragAndDropItem';
 
 interface IDragAndDropRow {
-  item: IToDo;
+  item: IProject;
   index: number;
   column: IColumn;
   component: any;
