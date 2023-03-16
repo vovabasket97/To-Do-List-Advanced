@@ -1,8 +1,3 @@
 .content {
-  @apply relative bg-white flex flex-col gap-8;
-  width: calc(100vw - 80px);
-  padding: 20px 35px 40px 30px;
-  &__wrapper {
-    @apply flex gap-4 flex-nowrap;
-  }
+  @apply bg-white rounded-t-2xl h-full overflow-hidden flex flex-col;
 }

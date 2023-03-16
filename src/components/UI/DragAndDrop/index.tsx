@@ -6,11 +6,11 @@ import DragAndDropColumn from './DragAndDropColumn';
 import { useDrag } from './hooks/useDrag';
 
 import styles from './dragAndDrop.module.scss';
-import { IInitial } from 'shared/types/column.types';
+import { TProjectData } from 'shared/types/projects/column.types';
 
 interface IDragAndDropContainer {
-  data: IInitial;
-  changeState: (prev: IInitial) => void;
+  data: TProjectData;
+  changeState: (prev: TProjectData) => void;
   component: FunctionComponent;
 }
 

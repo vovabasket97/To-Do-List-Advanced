@@ -6,17 +6,18 @@ import SidebarEditorItem from './SidebarEditorItem';
 import { useActions } from 'hooks/useActions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 
-import { data } from 'configs/todo/getInitialData';
-import { ITag, IToDo } from 'shared/types/todo.types';
-import { IColumn } from 'shared/types/column.types';
+import { data } from 'configs/projects/getInitialProjects';
+import { ITag, IProject } from 'shared/types/projects/projects.types';
+import { IColumn } from 'shared/types/projects/column.types';
 
-const SidebarEditer = ({ opened }: { opened: boolean }) => {
+const SidebarEditer = () => {
   const actions = useActions();
+  const opened = useTypedSelector(state => state.todo.drawer);
   const columns = useTypedSelector(state => state.todo.columns);
   const itemId = useTypedSelector(state => state.todo.lastOpenedItemId);
   const newData = useMemo(() => data.map(el => ({ value: el.value, label: el.title })), []);
 
-  const item = useMemo((): IToDo | undefined => {
+  const item = useMemo((): IProject | undefined => {
     return Object.values(columns as IColumn)
       .map(el => el.items)
       .flat()
@@ -34,7 +35,7 @@ const SidebarEditer = ({ opened }: { opened: boolean }) => {
     setDescription(item.description);
   }, [item]);
 
-  const changeItemHandler = useCallback((obj: object) => actions.editToDoItems(obj), [actions]);
+  const changeItemHandler = useCallback((obj: object) => actions.editProjectsItems(obj), [actions]);
 
   const onChangeName = useCallback(
     (value: string) => {

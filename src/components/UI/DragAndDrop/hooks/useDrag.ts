@@ -1,17 +1,14 @@
 import { useCallback } from 'react';
 import { reorderList } from '../utils/reorder';
-import { useTypedSelector } from 'hooks/useTypedSelector';
-import { IInitial } from 'shared/types/column.types';
+import { TProjectData } from 'shared/types/projects/column.types';
 import { DropResult } from 'react-beautiful-dnd';
 
 interface IDrag {
-  state: IInitial;
-  changeState: (prev: IInitial) => void;
+  state: TProjectData;
+  changeState: (prev: TProjectData) => void;
 }
 
 export const useDrag = ({ state, changeState }: IDrag) => {
-  const data = useTypedSelector(state => state.todo.columns);
-
   const onDragEnd = useCallback(
     (result: DropResult): void => {
       if (result.destination) {
@@ -27,7 +24,7 @@ export const useDrag = ({ state, changeState }: IDrag) => {
         } else {
           const sourceColumn = state.columns[result.source.droppableId];
           const destinationColumn = state.columns[result.destination.droppableId];
-          const item = { ...sourceColumn.items[result.source.index], status: data[result.destination.droppableId].value };
+          const item = { ...sourceColumn.items[result.source.index], status: state.columns[result.destination.droppableId].value };
 
           const newSourceColumn = { ...sourceColumn, items: [...sourceColumn.items] };
           newSourceColumn.items.splice(result.source.index, 1);
@@ -49,7 +46,7 @@ export const useDrag = ({ state, changeState }: IDrag) => {
         }
       }
     },
-    [changeState, data, state]
+    [changeState, state]
   );
 
   return {

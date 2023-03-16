@@ -4,8 +4,8 @@ import { IconTrash, IconPencil, IconDotsVertical, IconTrashX } from '@tabler/ico
 import { Button, Menu, createStyles, Text } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useActions } from 'hooks/useActions';
-import { IToDo } from 'shared/types/todo.types';
-import { IColumn } from 'shared/types/column.types';
+import { IProject } from 'shared/types/projects/projects.types';
+import { IColumn } from 'shared/types/projects/column.types';
 
 const useStyles = createStyles(theme => ({
   item: {
@@ -27,7 +27,7 @@ const useStyles = createStyles(theme => ({
 }));
 
 interface IDashboardDragAndDropItem {
-  item: IToDo;
+  item: IProject;
   column: IColumn;
   isDragging: boolean;
 }
@@ -43,8 +43,8 @@ const DashboardDragAndDropItem: FC<IDashboardDragAndDropItem> = ({ item, column,
   }, [item]);
 
   const onDeleteHandle = useCallback(() => {
-    const newItems = column.items.filter((el: IToDo) => el.value !== item.value);
-    actions.removeToDoItem({ columnId: column.id, newItems });
+    const newItems = column.items.filter((el: IProject) => el.value !== item.value);
+    actions.removeProjectsItem({ columnId: column.id, newItems });
     showNotification({
       title: 'Great job',
       message: 'Your task was removed successfully! 🤥',

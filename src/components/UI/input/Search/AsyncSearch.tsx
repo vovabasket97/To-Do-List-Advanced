@@ -1,11 +1,10 @@
 import { useState, useRef, useCallback, FC, FunctionComponent } from 'react';
 import { Autocomplete, Loader, AutocompleteItem } from '@mantine/core';
 import { IconSearch } from '@tabler/icons';
-import { IToDo } from 'shared/types/todo.types';
 
 interface IAsyncSearch {
-  onChange: (value: string) => Promise<IToDo[]>;
-  onSubmit: (item: IToDo) => void;
+  onChange: (value: string) => Promise<any[]>;
+  onSubmit: (item: any) => void;
   itemComponent: FunctionComponent;
 }
 
@@ -13,7 +12,7 @@ const AsyncSearch: FC<IAsyncSearch> = ({ onChange, onSubmit, itemComponent: Comp
   const timeoutRef = useRef(-1);
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Readonly<IToDo[]>>([]);
+  const [data, setData] = useState<Readonly<any[]>>([]);
 
   const handleChange = useCallback(
     (val: string) => {
@@ -52,7 +51,7 @@ const AsyncSearch: FC<IAsyncSearch> = ({ onChange, onSubmit, itemComponent: Comp
       nothingFound='Nothing Found'
       onItemSubmit={(item: AutocompleteItem) => {
         setValue('');
-        onSubmit(data.find((el: IToDo) => el?.name === item?.name) as IToDo);
+        onSubmit(data.find((el: any) => el?.name === item?.name));
         setLoading(false);
       }}
       filter={(value, item) => item.name.toLowerCase().includes(value.toLowerCase().trim())}

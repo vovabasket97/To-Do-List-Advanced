@@ -1,0 +1,8 @@
+.projects {
+  @apply grid overflow-auto h-full;
+  grid-template-columns: 80px auto;
+}
+
+.content {
+  @apply p-4;
+}
