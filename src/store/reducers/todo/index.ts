@@ -1,14 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { mockToDos as initialState } from 'configs/todo/getInitialToDo';
+import { initial as initialState, initialToDoItem } from 'configs/todo/getInitialToDo';
 
 const TodoSlice = createSlice({
   name: 'todo',
-  initialState: {
-    ...initialState,
-    lastOpenedItemId: null,
-    drawer: false
-  },
-  reducers: {}
+  initialState,
+  reducers: {
+    changeCurrentToDo: (state, action) => {
+      state.current = action.payload;
+    },
+    createNewToDo: (state, action) => {
+      state.data = [...state.data, initialToDoItem(action.payload)];
+      state.current = state.data.length - 1;
+    }
+  }
 });
 
 export const TodoSliceActions = TodoSlice.actions;

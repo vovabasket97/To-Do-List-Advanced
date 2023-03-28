@@ -1,34 +1,36 @@
 import { useCallback } from 'react';
-import { useTypedSelector } from 'hooks/useTypedSelector';
 
-import AddProject from './AddProject';
+import AddDataItem from './AddDataItem';
 
 import cn from 'classnames';
 import { useActions } from 'hooks/useActions';
 import { useDisclosure } from '@mantine/hooks';
-
-import { TProjectData } from 'shared/types/projects/column.types';
 import { IconPlus } from '@tabler/icons';
-import styles from './ProjectsList.module.scss';
+import styles from './DataList.module.scss';
 
-const ProjectsList = () => {
+interface IDataList {
+  current: number;
+  data: { id: string; name: string }[];
+  popUpTitle?: string;
+  handler: (values: object) => void;
+}
+
+const DataList = ({ current, data, handler, popUpTitle = 'Create project' }: IDataList) => {
   const actions = useActions();
-  const current = useTypedSelector(state => state.projects.current);
-  const list = useTypedSelector(state => state.projects.data);
 
   const [opened, { open, close }] = useDisclosure(false);
 
-  const handler = useCallback(
+  const createHandler = useCallback(
     (values: object) => {
       close();
-      actions.createNewProject(values);
+      handler(values);
     },
-    [close]
+    [close, handler]
   );
 
   return (
     <div className={styles.projectsList}>
-      {list.map(({ id, name }: TProjectData, index: number) => (
+      {data.map(({ id, name }: { id: string; name: string }, index: number) => (
         <div
           key={id}
           onClick={() => actions.changeCurrentProject(index)}
@@ -44,9 +46,9 @@ const ProjectsList = () => {
           <IconPlus />
         </span>
       </div>
-      {opened && <AddProject opened={opened} handler={handler} close={close} />}
+      {opened && <AddDataItem title={popUpTitle} opened={opened} handler={createHandler} close={close} />}
     </div>
   );
 };
 
-export default ProjectsList;
+export default DataList;

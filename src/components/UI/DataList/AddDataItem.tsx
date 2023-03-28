@@ -1,13 +1,14 @@
 import { Modal, Button, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
-interface IAddProject {
+interface IAddDataItem {
   opened: boolean;
   close: () => void;
   handler: (values: object) => void;
+  title: string;
 }
 
-const AddProject = ({ opened, close, handler }: IAddProject) => {
+const AddDataItem = ({ opened, close, handler, title }: IAddDataItem) => {
   const form = useForm({
     initialValues: {
       name: ''
@@ -16,11 +17,11 @@ const AddProject = ({ opened, close, handler }: IAddProject) => {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title='Create project'>
+      <Modal opened={opened} onClose={close} title={title}>
         <form onSubmit={form.onSubmit((values: object) => handler(values))} className='flex flex-col gap-3'>
-          <TextInput data-autofocus withAsterisk required placeholder='Project name' {...form.getInputProps('name')} />
+          <TextInput data-autofocus withAsterisk required placeholder='Enter name' {...form.getInputProps('name')} />
           <Button className='bg-gray' type='submit'>
-            Open modal
+            Create
           </Button>
         </form>
       </Modal>
@@ -28,4 +29,4 @@ const AddProject = ({ opened, close, handler }: IAddProject) => {
   );
 };
 
-export default AddProject;
+export default AddDataItem;

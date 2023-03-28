@@ -2,7 +2,7 @@ import { FunctionComponent, memo } from 'react';
 
 import DashboardDragAndDropItem from './DragAndDropItem';
 import DragAndDropContainer from 'components/UI/DragAndDrop';
-import ProjectsList from './ProjectsList/ProjectsList';
+import DataList from 'components/UI/DataList/DataList';
 
 import { useActions } from 'hooks/useActions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
@@ -13,15 +13,18 @@ const Projects = () => {
   const actions = useActions();
   const data = useTypedSelector(state => {
     const current = state.projects.current;
-    return state.projects.data[current];
+    return {
+      data: state.projects.data,
+      current
+    };
   });
 
   return (
     <div className={styles.projects}>
-      <ProjectsList />
+      <DataList current={data.current} handler={actions.createNewProject} data={data.data} />
       <div className={styles.content}>
         <DragAndDropContainer
-          data={data}
+          data={data.data[data.current]}
           changeState={actions.changeProjectsState}
           component={DashboardDragAndDropItem as FunctionComponent}
         />
