@@ -1,6 +1,5 @@
+import { Text, createStyles } from '@mantine/core';
 import { forwardRef } from 'react';
-
-import { createStyles, Text } from '@mantine/core';
 
 const useStyles = createStyles(theme => ({
   item: {

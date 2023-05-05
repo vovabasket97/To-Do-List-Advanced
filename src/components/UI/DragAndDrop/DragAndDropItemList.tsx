@@ -1,9 +1,10 @@
+import { Group, ScrollArea } from '@mantine/core';
+import { FC, FunctionComponent, memo, useLayoutEffect, useRef } from 'react';
+import { Droppable, DroppableProvided } from 'react-beautiful-dnd';
+
 import { IColumn } from 'shared/types/projects/column.types';
 import { IProject } from 'shared/types/projects/projects.types';
-import { Group, ScrollArea } from '@mantine/core';
-import { useLayoutEffect, useRef, memo, FC, FunctionComponent } from 'react';
 
-import { Droppable, DroppableProvided } from 'react-beautiful-dnd';
 import DragAndDropRow from './DragAndDropRow';
 
 interface IDragAndDropItemList {

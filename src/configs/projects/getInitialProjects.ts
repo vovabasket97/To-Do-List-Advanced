@@ -1,6 +1,8 @@
-import { IInitial, TProjectData } from 'shared/types/projects/column.types';
-import { generateItem } from 'utils/generateItem';
 import { v4 as uuid } from 'uuid';
+
+import { IInitial, TProjectData } from 'shared/types/projects/column.types';
+
+import { generateItem } from 'utils/generateItem';
 
 export const data = [
   { value: 'backlog', title: 'Backlog' },
@@ -98,9 +100,19 @@ export const draftProject = ({ name }: { name: string }): TProjectData => ({
           tags: []
         })
       ]
+    },
+    'column-1': {
+      id: 'column-1',
+      ...data[1],
+      items: []
+    },
+    'column-2': {
+      id: 'column-2',
+      ...data[2],
+      items: []
     }
   },
-  columnOrder: ['column-0']
+  columnOrder: ['column-0', 'column-1', 'column-2']
 });
 
 export const initial: IInitial = {

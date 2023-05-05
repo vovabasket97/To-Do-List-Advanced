@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import Header from 'components/Header';
 import Dashboard from 'components/Layout/Dashboard/Dashboard';
 import Projects from 'components/Layout/Projects/Projects';
 import ToDo from 'components/Layout/ToDo/ToDo';
-import Header from 'components/Header';
 import Content from 'components/UI/Content/Content';
 
 import { routes } from './routes';

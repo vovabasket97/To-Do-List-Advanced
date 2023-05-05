@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-
-import { TextInput, ActionIcon, useMantineTheme } from '@mantine/core';
-import { IconSearch, IconArrowRight } from '@tabler/icons';
+import { ActionIcon, TextInput, useMantineTheme } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
+import { IconArrowRight, IconSearch } from '@tabler/icons';
+import React, { useState } from 'react';
 
 const Search = ({ className = '', ...rest }) => {
   const theme = useMantineTheme();

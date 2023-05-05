@@ -1,7 +1,8 @@
-import { IColumn } from 'shared/types/projects/column.types';
-import { IProject } from 'shared/types/projects/projects.types';
 import { FC } from 'react';
 import { DraggableProvided } from 'react-beautiful-dnd';
+
+import { IColumn } from 'shared/types/projects/column.types';
+import { IProject } from 'shared/types/projects/projects.types';
 
 interface IDragAndDropItem {
   provided: DraggableProvided;

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { initial as initialState, initialToDoItem } from 'configs/todo/getInitialToDo';
 
 const TodoSlice = createSlice({

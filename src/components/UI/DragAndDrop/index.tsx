@@ -1,12 +1,12 @@
 import { FC, FunctionComponent, memo } from 'react';
-
 import { DragDropContext, Droppable, DroppableProvided } from 'react-beautiful-dnd';
-import DragAndDropColumn from './DragAndDropColumn';
 
-import { useDrag } from './hooks/useDrag';
+import { TProjectData } from 'shared/types/projects/column.types';
 
 import styles from './dragAndDrop.module.scss';
-import { TProjectData } from 'shared/types/projects/column.types';
+
+import DragAndDropColumn from './DragAndDropColumn';
+import { useDrag } from './hooks/useDrag';
 
 interface IDragAndDropContainer {
   data: TProjectData;

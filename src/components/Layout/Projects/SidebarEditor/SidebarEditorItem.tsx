@@ -1,10 +1,8 @@
-import { useState, useCallback, FC, ReactNode } from 'react';
-
-import { Grid, Input, Button, Group, Tooltip, Textarea, FocusTrap, ActionIcon } from '@mantine/core';
-
+import { ActionIcon, Button, FocusTrap, Grid, Group, Input, Textarea, Tooltip } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
-
 import { IconEditCircle } from '@tabler/icons';
+import { FC, ReactNode, useCallback, useState } from 'react';
+
 import styles from './SidebarEditorItem.module.scss';
 
 interface ISidebarEditorItem {

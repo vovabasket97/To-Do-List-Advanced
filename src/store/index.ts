@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './reducers';
-import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { createBlacklistFilter } from 'redux-persist-transform-filter';
+import storage from 'redux-persist/lib/storage';
+
+import { rootReducer } from './reducers';
 
 const saveSubsetFilter = createBlacklistFilter('todo', ['drawer']);
 

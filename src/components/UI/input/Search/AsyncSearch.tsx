@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback, FC, FunctionComponent } from 'react';
-import { Autocomplete, Loader, AutocompleteItem } from '@mantine/core';
+import { Autocomplete, AutocompleteItem, Loader } from '@mantine/core';
 import { IconSearch } from '@tabler/icons';
+import { FC, FunctionComponent, useCallback, useRef, useState } from 'react';
 
 interface IAsyncSearch {
   onChange: (value: string) => Promise<any[]>;

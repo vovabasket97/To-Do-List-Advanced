@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { generateItem } from 'utils/generateItem';
-import { draftProject, initial as initialState } from 'configs/projects/getInitialProjects';
+
 import { IColumn, IInitial } from 'shared/types/projects/column.types';
+
+import { generateItem } from 'utils/generateItem';
+
+import { draftProject, initial as initialState } from 'configs/projects/getInitialProjects';
 
 function getCurrentData(state: IInitial) {
   return state.data[state.current].columns;

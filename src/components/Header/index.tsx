@@ -1,13 +1,14 @@
-import { useCallback, memo } from 'react';
-
-import AsyncSearch from 'components/UI/input/Search/AsyncSearch';
-import SearchTaskItem from './SearchTaskItem';
-
-import styles from './header.module.scss';
-import { routes } from 'pages/routes';
-import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import { ReactComponent as Logo } from 'images/logo.svg';
+import { routes } from 'pages/routes';
+import { memo, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+import AsyncSearch from 'components/UI/input/Search/AsyncSearch';
+
+import styles from './header.module.scss';
+
+import SearchTaskItem from './SearchTaskItem';
 
 const routesArr = Object.values(routes);
 

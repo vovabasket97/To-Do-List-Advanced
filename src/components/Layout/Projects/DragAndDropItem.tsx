@@ -1,11 +1,12 @@
+import { Button, Menu, Text, createStyles } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { IconDotsVertical, IconPencil, IconTrash, IconTrashX } from '@tabler/icons';
 import { FC, useCallback } from 'react';
 
-import { IconTrash, IconPencil, IconDotsVertical, IconTrashX } from '@tabler/icons';
-import { Button, Menu, createStyles, Text } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
 import { useActions } from 'hooks/useActions';
-import { IProject } from 'shared/types/projects/projects.types';
+
 import { IColumn } from 'shared/types/projects/column.types';
+import { IProject } from 'shared/types/projects/projects.types';
 
 const useStyles = createStyles(theme => ({
   item: {

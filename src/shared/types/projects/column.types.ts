@@ -1,4 +1,5 @@
 import { columns } from 'configs/projects/getInitialProjects';
+
 import { IProject } from './projects.types';
 
 export interface IColumn {

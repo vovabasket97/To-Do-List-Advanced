@@ -1,8 +1,10 @@
-import { IColumn } from 'shared/types/projects/column.types';
-import { IProject } from 'shared/types/projects/projects.types';
 import { FC, memo } from 'react';
 import { Draggable, DraggableProvided } from 'react-beautiful-dnd';
 import { areEqual } from 'react-window';
+
+import { IColumn } from 'shared/types/projects/column.types';
+import { IProject } from 'shared/types/projects/projects.types';
+
 import DragAndDropItem from './DragAndDropItem';
 
 interface IDragAndDropRow {

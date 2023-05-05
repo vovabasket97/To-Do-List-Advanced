@@ -1,14 +1,15 @@
-import { useState, useCallback, useMemo, memo, useEffect } from 'react';
-
-import { Drawer, Text, Grid, SimpleGrid, Select, MultiSelect } from '@mantine/core';
-import SidebarEditorItem from './SidebarEditorItem';
+import { Drawer, Grid, MultiSelect, Select, SimpleGrid, Text } from '@mantine/core';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useActions } from 'hooks/useActions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 
-import { data } from 'configs/projects/getInitialProjects';
-import { ITag, IProject } from 'shared/types/projects/projects.types';
 import { IColumn } from 'shared/types/projects/column.types';
+import { IProject, ITag } from 'shared/types/projects/projects.types';
+
+import { data } from 'configs/projects/getInitialProjects';
+
+import SidebarEditorItem from './SidebarEditorItem';
 
 const SidebarEditer = () => {
   const actions = useActions();

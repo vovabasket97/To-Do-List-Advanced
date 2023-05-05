@@ -1,7 +1,7 @@
 import DataList from 'components/UI/DataList/DataList';
 
-import { useTypedSelector } from 'hooks/useTypedSelector';
 import { useActions } from 'hooks/useActions';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 
 import styles from './ToDo.module.scss';
 

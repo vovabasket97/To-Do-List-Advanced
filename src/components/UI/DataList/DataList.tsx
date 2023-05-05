@@ -1,12 +1,13 @@
-import { useCallback } from 'react';
-
-import AddDataItem from './AddDataItem';
-
-import cn from 'classnames';
-import { useActions } from 'hooks/useActions';
 import { useDisclosure } from '@mantine/hooks';
 import { IconPlus } from '@tabler/icons';
+import cn from 'classnames';
+import { useCallback } from 'react';
+
+import { useActions } from 'hooks/useActions';
+
 import styles from './DataList.module.scss';
+
+import AddDataItem from './AddDataItem';
 
 interface IDataList {
   current: number;

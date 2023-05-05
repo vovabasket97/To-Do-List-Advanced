@@ -1,14 +1,15 @@
+import { Button, Group, MultiSelect, Paper, Select, SimpleGrid, Text, TextInput, Textarea, createStyles } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { IconCheck } from '@tabler/icons';
 import React, { useCallback, useState } from 'react';
 
-import { TextInput, Select, Button, Paper, Text, Textarea, Group, SimpleGrid, createStyles, MultiSelect } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
 import { useActions } from 'hooks/useActions';
-import { IconCheck } from '@tabler/icons';
+
+import { ITag } from 'shared/types/projects/projects.types';
 
 import { data } from 'configs/projects/getInitialProjects';
 
 import styles from './addTask.module.scss';
-import { ITag } from 'shared/types/projects/projects.types';
 
 const useStyles = createStyles(theme => {
   const BREAKPOINT = theme.fn.smallerThan('sm');

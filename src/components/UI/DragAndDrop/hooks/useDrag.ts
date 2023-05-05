@@ -1,7 +1,9 @@
 import { useCallback } from 'react';
-import { reorderList } from '../utils/reorder';
-import { TProjectData } from 'shared/types/projects/column.types';
 import { DropResult } from 'react-beautiful-dnd';
+
+import { TProjectData } from 'shared/types/projects/column.types';
+
+import { reorderList } from '../utils/reorder';
 
 interface IDrag {
   state: TProjectData;

@@ -1,4 +1,4 @@
-import { Modal, Button, TextInput } from '@mantine/core';
+import { Button, Modal, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
 interface IAddDataItem {
@@ -16,16 +16,14 @@ const AddDataItem = ({ opened, close, handler, title }: IAddDataItem) => {
   });
 
   return (
-    <>
-      <Modal opened={opened} onClose={close} title={title}>
-        <form onSubmit={form.onSubmit((values: object) => handler(values))} className='flex flex-col gap-3'>
-          <TextInput data-autofocus withAsterisk required placeholder='Enter name' {...form.getInputProps('name')} />
-          <Button className='bg-gray' type='submit'>
-            Create
-          </Button>
-        </form>
-      </Modal>
-    </>
+    <Modal opened={opened} onClose={close} title={title}>
+      <form onSubmit={form.onSubmit((values: object) => handler(values))} className='flex flex-col gap-3'>
+        <TextInput data-autofocus withAsterisk required placeholder='Enter name' {...form.getInputProps('name')} />
+        <Button className='bg-gray' type='submit'>
+          Create
+        </Button>
+      </form>
+    </Modal>
   );
 };
 
